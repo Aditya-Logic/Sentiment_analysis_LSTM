@@ -1,0 +1,169 @@
+/* General Page Setup */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    min-height: 100vh;
+    margin: 0;
+    color: #505050;
+
+    background-image: url('/static/5630939.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* Container logic - leaving background as per your request */
+.container {
+    border: 1px rgba(255, 255, 255, 0.3) solid;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 15px;
+
+    background-color:rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color:beige;
+    width: 90%;
+    max-width: 700px;
+    padding: 40px;
+    margin-top:85px;
+}
+
+/* Heading Section */
+.heading h3 {
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin:0;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 25px;
+}
+
+/* Input Area */
+.input textarea {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    background:rgba(255, 255, 255, 0.9); 
+    border:none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    /* Ensures padding doesn't break width */
+    outline-color: #e05757;
+    resize: vertical;
+    color:#333
+}
+
+.btn-analyze {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color:#4caf50;
+    border: 1px solid #79bdd6;
+    border-radius: 5px;
+    font-weight:bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-analyze:hover {
+    background-color: #45a049;
+    border-color:#dbe581
+}
+
+.btn-analyze:active {
+    transform: scale(0.98);
+    /* Slight "push" effect when clicked */
+}
+
+/* Output Blocks - Green style from your reference */
+.output_block {
+    margin-top: 30px;
+}
+
+.sentiment_output,.intensity_output {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    backdrop-filter: brightness(0.9);
+    /* Slightly darkens the box area */
+}
+
+/* Dynamic Colors */
+.positive {
+    background-color:rgba(76, 175, 80, 0.2);
+    /* Light Green */
+    color: #c8e6c9;
+    border: 1px solid #4caf50;
+}
+
+.negative {
+    background-color:rgba(244, 67, 54, 0.2) ;
+    /* Light Red */
+    color: #ffcdd2;
+    border: 1px solid #f44336;
+}
+
+.neutral {
+    background-color: rgba(33, 150, 243, 0.2);
+    /* Light Blue */
+    color: #bbdefb;
+    border: 1px solid #2196f3;
+}
+
+/* Placeholder for the sentiment meter */
+
+
+.main-header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height: 70px;
+    background:rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    z-index:1000; /* Keeps it above everything else */
+    display:flex;
+    justify-content: center;
+}
+
+.header-content{
+    width:90%;
+    max-width: 1200px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    font-size: 1.5em;
+    color:white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.nav-links a{
+    color:rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition:0.3s ;
+}
+
+.nav-links a:hover{
+    color:#4caf50;
+}
+
+.nav-links a.active{
+    color:#7cc47f;
+    border-bottom:2px solid #0f0f0f;
+}
+
+

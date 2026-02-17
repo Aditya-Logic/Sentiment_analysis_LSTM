@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentimentAI</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            min-height: 100vh;
+            margin: 0;
+            color: #505050;
+
+            background-image: url('/static/5630939.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .main-header{
+            position:fixed;
+            left:0;
+            top:0;
+            height: 70px;
+            width:100%;
+            background:rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            z-index:1000; /* Keeps it above everything else */
+            display:flex;
+            justify-content: center;
+        }
+
+        .header-content{
+            width:90%;
+            max-width: 1200px;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .logo{
+            font-size: 1.5em;
+            color:white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+    
+        .nav-links a{
+            color:rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition:0.3s ;
+        }
+    
+        .nav-links a:hover{
+            color:#4caf50;
+        }
+    
+        .nav-links a.active{
+            color:#7cc47f;
+            border-bottom:2px solid #0f0f0f;
+        }
+    </style>
+</head>
+<body>
+     <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <span  class="logo-icon"></span>SentimentAI
+            </div>
+            <nav class="nav-links">
+                <a href="/" class="{{ 'active' if request.path=='/' else ""}}">Home</a>
+                <a href="#" class="{{ 'active' if request.path=='#' else ""}}">Contact</a>
+                <a href="/about" class="{{ 'active' if request.path=='/about' else ""}}">About us</a>
+            </nav>
+        </div>
+    </header>
+</body>
+</html>

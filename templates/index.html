@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment analysis</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script href="/static/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.9/justgage.min.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <span  class="logo-icon"></span>SentimentAI
+            </div>
+            <nav class="nav-links">
+                <a href="/" class="{{ 'active' if request.path=='/' else ""}}">Home</a>
+                <a href="#" class="{{ 'active' if request.path=='#' else ""}}">Contact</a>
+                <a href="/about" class="{{ 'active' if request.path=='/about' else ""}}">About us</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="heading">
+            <h3>
+                A Simple Sentiment Analysis Webapp
+            </h3>
+          
+            <p class="subtitle">Enter your text below:</p>
+        </div>
+        <div class="input">
+            <form action="/predict" method="post">
+                <textarea name="text" placeholder="Type your review here..." required>{{text}}</textarea>
+               
+                <br>
+                <button type="submit" class="btn-analyze">Analyze the Sentiment</button>
+            </form>
+        </div>
+
+        
+        <div class="output_block">
+            {% if sentiment %}
+                <div class="sentiment_output {{ sentiment | lower }}">The entered text is {{sentiment}} </div>
+                <div class="intensity_output">
+                Sentiment Intensity (score): {{intensity}}
+                </div> 
+
+                <div id="gauge" style="width:340px;margin:0 auto; height:240px;"></div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        {% if intensity %}
+            var g = new JustGage({
+                id: "gauge",
+                value: {{ intensity * 100 if intensity else 0}}, // Convert 0-1 to 0-100
+                min: 0,
+                max: 100,
+                title: "Sentiment Intensity",
+                titleMinFontSize: 16,
+                titleFontColor: "#ffffff",
+                label: "Score %",
+                levelColors: ["#ff4d4d", "#ffd93d", "#4caf50"] // Red, Yellow, Green 
+            });
+        {% endif %}
+    </script>
+
+</body>
+</html>
