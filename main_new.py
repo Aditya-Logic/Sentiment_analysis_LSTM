@@ -35,7 +35,7 @@ lr_reducer = ReduceLROnPlateau(
 # loading dataset
 df=pd.read_csv('cleaned_twitter_data.csv')
 df = df.sample(frac=1, random_state=42).reset_index(drop=True)
-MODEL_FILE='sentiment_model.keras'
+MODEL_FILE='sentiment_model.h5'
 TOKENIZER_FILE='tokenizer.pkl'
 
 

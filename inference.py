@@ -6,22 +6,19 @@ from flask import Flask,jsonify,request,render_template
 import joblib
 import numpy as np
 import tensorflow as tf
-from tensorflow import keras
 import os
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 app=Flask(__name__)
 
 # 1.configuration
-MODEL_FILE='sentiment_model.keras'
+MODEL_FILE='sentiment_model.h5'
 TOKENIZER_FILE='tokenizer.pkl'
 
 # 2.load model and tokenizer
 print("loading model and pipeline")
 if os.path.exists(MODEL_FILE) and os.path.exists(TOKENIZER_FILE):
     model=tf.keras.models.load_model(MODEL_FILE)
-    model.save("model.h5")
-    model = keras.models.load_model("model.h5", compile=False)
     tokenizer=joblib.load(TOKENIZER_FILE)
     print("MODEL loaded succesfully")
 

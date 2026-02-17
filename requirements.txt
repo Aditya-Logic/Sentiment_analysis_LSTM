@@ -5,4 +5,4 @@ numpy==1.26.4
 scikit-learn
 joblib
 vaderSentiment
-tensorflow==2.15.0
+tensorflow==2.20.0
