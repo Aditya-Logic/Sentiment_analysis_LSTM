@@ -1,8 +1,10 @@
 Flask
 gunicorn
 pandas
-numpy
-scikit-learn==1.6.1
+numpy==1.26.4
+scikit-learn
 joblib
 vaderSentiment
-tensorflow
+tensorflow==2.15.0
+keras==2.15.0
+pickle
