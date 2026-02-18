@@ -18,7 +18,7 @@ TOKENIZER_FILE='tokenizer.pkl'
 # 2.load model and tokenizer
 print("loading model and pipeline")
 if os.path.exists(MODEL_FILE) and os.path.exists(TOKENIZER_FILE):
-    model=tf.keras.models.load_model(MODEL_FILE)
+    model=tf.keras.models.load_model(MODEL_FILE,compile="False")
     tokenizer=joblib.load(TOKENIZER_FILE)
     print("MODEL loaded succesfully")
 
