@@ -19,6 +19,12 @@ The model uses:
 This project demonstrates an **end-to-end NLP pipeline** from training to deployment.
 
 ---
+## 🚀 Live Demo
+
+You can try the application here:
+
+👉 **Live App:**  
+https://huggingface.co/spaces/Andy12vb/sentiment-analysis-lstm
 
 ## 🚀 Features
 
@@ -49,8 +55,8 @@ This project demonstrates an **end-to-end NLP pipeline** from training to deploy
 ```
 project/
 │── main_new.py                # Model training script
-│── inference.py               # Flask web application
-│── sentiment_model.keras      # Saved trained model
+│── app.py               # Flask web application
+│── sentiment_model.h5      # Saved trained model
 │── tokenizer.pkl              # Saved tokenizer
 │── cleaned_twitter_data.csv   # Dataset
 │── glove.6B.100d.txt          # Pretrained embeddings
@@ -67,8 +73,8 @@ project/
 ### 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/sentiment-analysis-app.git
-cd sentiment-analysis-app
+git clone https://github.com/Aditya-Logic/Sentiment_analysis_LSTM.git
+cd Sentiment_anlaysis_LSTM
 ```
 
 ### 2️⃣ Create Virtual Environment (Recommended)
@@ -135,7 +141,7 @@ python main_new.py
 This will:
 
 * Train the neural network
-* Save model → `sentiment_model.keras`
+* Save model → `sentiment_model.h5`
 * Save tokenizer → `tokenizer.pkl`
 
 ---
@@ -145,7 +151,7 @@ This will:
 Start Flask server:
 
 ```bash
-python inference.py
+python app.py
 ```
 
 Then open browser:
