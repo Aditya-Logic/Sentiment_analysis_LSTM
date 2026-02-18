@@ -1,1 +1,1 @@
-web: gunicorn inference:app --timeout 300
+web: gunicorn inference:app --workers 1 --threads 1 --timeout 120

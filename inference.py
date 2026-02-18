@@ -1,6 +1,8 @@
 import os
 # Suppress TensorFlow info and warning messages
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
 
 from flask import Flask,jsonify,request,render_template
 import joblib
