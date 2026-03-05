@@ -3,7 +3,7 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     min-height: 100vh;
     margin: 0;
     color: #505050;
@@ -20,22 +20,22 @@ body {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     border-radius: 15px;
 
-    background-color:rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
-    color:beige;
+    color: beige;
     width: 90%;
     max-width: 700px;
     padding: 40px;
-    margin-top:85px;
+    margin-top: 85px;
 }
 
 /* Heading Section */
 .heading h3 {
     font-size: 2.2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    margin:0;
+    margin: 0;
 }
 
 .subtitle {
@@ -48,8 +48,8 @@ body {
     width: 100%;
     height: 120px;
     padding: 15px;
-    background:rgba(255, 255, 255, 0.9); 
-    border:none;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
     border-radius: 8px;
     font-size: 1rem;
     font-family: inherit;
@@ -57,23 +57,23 @@ body {
     /* Ensures padding doesn't break width */
     outline-color: #e05757;
     resize: vertical;
-    color:#333
+    color: #333
 }
 
 .btn-analyze {
     margin-top: 15px;
     padding: 10px 20px;
-    background-color:#4caf50;
+    background-color: #4caf50;
     border: 1px solid #79bdd6;
     border-radius: 5px;
-    font-weight:bold;
+    font-weight: bold;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .btn-analyze:hover {
     background-color: #45a049;
-    border-color:#dbe581
+    border-color: #dbe581
 }
 
 .btn-analyze:active {
@@ -86,7 +86,9 @@ body {
     margin-top: 30px;
 }
 
-.sentiment_output,.intensity_output {
+.sentiment_output,
+.intensity_output,
+.confidence {
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -97,14 +99,14 @@ body {
 
 /* Dynamic Colors */
 .positive {
-    background-color:rgba(76, 175, 80, 0.2);
+    background-color: rgba(76, 175, 80, 0.2);
     /* Light Green */
     color: #c8e6c9;
     border: 1px solid #4caf50;
 }
 
 .negative {
-    background-color:rgba(244, 67, 54, 0.2) ;
+    background-color: rgba(244, 67, 54, 0.2);
     /* Light Red */
     color: #ffcdd2;
     border: 1px solid #f44336;
@@ -120,50 +122,151 @@ body {
 /* Placeholder for the sentiment meter */
 
 
-.main-header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 70px;
-    background:rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    z-index:1000; /* Keeps it above everything else */
-    display:flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 1000;
+    /* Keeps it above everything else */
+    display: flex;
     justify-content: center;
 }
 
-.header-content{
-    width:90%;
+.header-content {
+    width: 90%;
     max-width: 1200px;
-    display:flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo{
+.logo {
     font-size: 1.5em;
-    color:white;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.nav-links a{
-    color:rgba(255, 255, 255, 0.9);
+.nav-links a {
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     margin-left: 25px;
     font-weight: 500;
-    transition:0.3s ;
+    transition: 0.3s;
 }
 
-.nav-links a:hover{
-    color:#4caf50;
+.nav-links a:hover {
+    color: #4caf50;
 }
 
-.nav-links a.active{
-    color:#7cc47f;
-    border-bottom:2px solid #0f0f0f;
+.nav-links a.active {
+    color: #7cc47f;
+    border-bottom: 2px solid #0f0f0f;
+}
+
+/* --- Dropdown Selection Styling --- */
+.view-selector-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.view-selector-container label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    /* High visibility for dropdown text */
+    color: #333;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-select:focus {
+    border-color: #4caf50;
+}
+
+/* --- Visualization Sections --- */
+.visualization-area {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    /* Darker contrast for plots */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-section h5 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #f1f1f1;
+    text-align: center;
+}
+
+/* Ensures Matplotlib images don't overflow your glass container */
+.viz-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    background-color: white;
+    /* Adds contrast for the plot lines */
+}
+
+/* --- Word Highlighter Legend --- */
+.viz-legend {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.legend-item span {
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-weight: bold;
 }
 
 
+#gauge {
+    width: 340px;
+    height: 240px;
+    margin: 20px auto;
+    display: block;
+    /* Ensures it takes up space even if empty initially */
+    background: transparent;
+    z-index: 5;
+}
+
+/* Fix for the "Intensity Gauge" view section */
+#view-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}

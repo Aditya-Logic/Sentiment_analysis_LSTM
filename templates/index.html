@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sentiment analysis</title>
     <link rel="stylesheet" href="/static/style.css">
-    <script href="/static/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.9/justgage.min.js"></script>
 </head>
+
 <body>
     <header class="main-header">
         <div class="header-content">
             <div class="logo">
-                <span  class="logo-icon"></span>SentimentAI
+                <span class="logo-icon"></span>SentimentAI
             </div>
             <nav class="nav-links">
                 <a href="/" class="{{ 'active' if request.path=='/' else ""}}">Home</a>
@@ -27,46 +28,112 @@
             <h3>
                 A Simple Sentiment Analysis Webapp
             </h3>
-          
+
             <p class="subtitle">Enter your text below:</p>
         </div>
         <div class="input">
             <form action="/predict" method="post">
                 <textarea name="text" placeholder="Type your review here..." required>{{text}}</textarea>
-               
+
                 <br>
                 <button type="submit" class="btn-analyze">Analyze the Sentiment</button>
             </form>
+
+            {% if sentiment %}
+            <div class="view-selector-container">
+                <label>Select Visualization View:</label>
+                <select class="form-select" onchange="toggleView()" id="viewSelect">
+                    <option value="heatmap" selected>Neural Word Importance (Heatmap)</option>
+                    <option value="gauge">Intensity Gauge</option>
+                    <option value="history">Session History Plot</option>
+                </select>
+            </div>
+            {% endif %}
         </div>
 
-        
+
         <div class="output_block">
             {% if sentiment %}
-                <div class="sentiment_output {{ sentiment | lower }}">The entered text is {{sentiment}} </div>
-                <div class="intensity_output">
+            <div class="sentiment_output {{ sentiment | lower }}">The entered text is {{sentiment}} </div>
+            <div class="confidence">Confidence : {{confidence}}</div>
+            <div class="intensity_output">
                 Sentiment Intensity (score): {{intensity}}
-                </div> 
+            </div>
 
-                <div id="gauge" style="width:340px;margin:0 auto; height:240px;"></div>
-            {% endif %}
+            <!-- <div id="gauge" style="width:340px;margin:0 auto; height:240px;"></div> -->
+
+            <div class="visualization-area">
+                <div id="view-heatmap" class="view-section">
+                    <h5>Neural Word Importance (Heatmap)</h5> {% if heatmap_url %}
+                    <img src="data:image/png;base64,{{ heatmap_url }}" class="viz-image">
+                    {% else %}
+                    <p>Analyze text to see word importance.</p>
+                    {% endif %}
+                </div>
+
+                <div id="view-gauge" class="view-section" style="display:none;">
+                    <h5>Intensity Meter</h5>
+                    <div id="gauge"></div>
+                </div>
+
+                <div id="view-history" class="view-section" style="display:none;">
+                    <h5>Session History Analysis</h5> {% if history_plot %}
+                    <img src="data:image/png;base64,{{ history_plot }}" class="viz-image">
+                    {% else %}
+                    <p>No history available yet.</p>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+
         </div>
     </div>
 
     <script>
-        {% if intensity %}
-            var g = new JustGage({
-                id: "gauge",
-                value: {{ intensity * 100 if intensity else 0}}, // Convert 0-1 to 0-100
-                min: 0,
-                max: 100,
-                title: "Sentiment Intensity",
-                titleMinFontSize: 16,
-                titleFontColor: "#ffffff",
-                label: "Score %",
-                levelColors: ["#ff4d4d", "#ffd93d", "#4caf50"] // Red, Yellow, Green 
+        function toggleView() {
+            const selectedView = document.getElementById('viewSelect').value;
+
+            // Hide all sections
+            document.querySelectorAll('.view-section').forEach(section => {
+                section.style.display = 'none';
             });
-        {% endif %}
+
+            // Show selected section
+            const activeSection = document.getElementById('view-' + selectedView);
+            if (activeSection) {
+                activeSection.style.display = 'block';
+            }
+
+            // Refresh gauge only if it is the active view
+            if (selectedView === 'gauge') {
+                refreshGauge();
+            }
+        }
+
+        // Call toggleView on page load to ensure the UI matches the dropdown state
+        window.onload = function () {
+            toggleView();
+        };
+        var g; // Define globally so we can refresh it
+        function refreshGauge() {
+            // Clear old gauge if it exists
+            document.getElementById('gauge').innerHTML = '';
+
+            // Create new gauge
+            g = new JustGage({
+                id: "gauge",
+                value: {{ intensity * 100 if intensity else 0 }},
+        min: 0,
+            max: 100,
+                title: "Sentiment Intensity",
+                    label: "Score %",
+                        levelColors: ["#ff4d4d", "#ffd93d", "#4caf50"]
+                });
+            }
+
     </script>
 
 </body>
+
 </html>
